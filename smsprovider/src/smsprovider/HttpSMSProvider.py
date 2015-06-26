@@ -124,11 +124,11 @@ class HttpSMSProvider(ISMSProvider):
         lib = 'urllib'
         try:
             if basic_auth == True and https == True:
-                lib = 'httplib'
-                ret = self.httplib_request(url, parameter, username=username,
+                lib = 'urllib'
+                ret = self.urllib_request(url, parameter, username=username,
                                            password=password, method=method)
             else:
-                ret = self.urllib_request(url, parameter, username=username,
+                ret = self.httplib_request(url, parameter, username=username,
                                            password=password, method=method)
         except Exception as exx:
 
