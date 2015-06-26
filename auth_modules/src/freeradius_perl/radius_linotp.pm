@@ -272,9 +272,11 @@ sub authenticate {
         &radiusd::radlog( Info, "urlparam $_ \n" ) for ( keys %params );
     }
 
-    my $ua     = LWP::UserAgent->new();
 	if ($check_ssl == false) {
-		$ua->ssl_opts( verify_hostname => 0 );
+	my $ua     = LWP::UserAgent->new( ssl_opts => { SSL_verify_mode => 'SSL_VERIFY_NONE'});	
+	}
+	else {
+	my $ua     = LWP::UserAgent->new()
 	}
     my $response = $ua->post( $URL, \%params );
     my $content  = $response->decoded_content();
